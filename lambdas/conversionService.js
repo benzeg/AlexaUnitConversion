@@ -11,7 +11,7 @@ const InputException = function(message) {
 
 const verifyUnitFamily = (unit, cb) => {
 	//error catching
-	const err;
+	let err;
 	if (!Unit.unitLib[convertingUnit]) {
 		err = 'converting unit not found';
 	}
@@ -36,7 +36,7 @@ const verifyUnitFamily = (unit, cb) => {
 }
 
 const verifyInputNum = (val) => {
-	const err;
+	let err;
 	const num = parseFloat(val);
 	if (isNaN(num)) {
 		err = `you gave me an invalid number of ${convertingUnit} to convert`;
