@@ -15,4 +15,4 @@ const handler = (event, context, callback) => {
 	alexa.execute();
 }
 
-export { handler }
+export { handler };
