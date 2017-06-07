@@ -1,0 +1,5 @@
+ "convert {valOne} {unitOne} to {unitTwo}",
+        "what is {valOne} {unitOne} in {unitTwo}",
+        "How many {unitTwo} is in {valOne} {unitOne}",
+        "how much is {valOne} {unitOne} in {unitTwo}",
+        "give me {valOne} {unitOne} in {unitTwo}"

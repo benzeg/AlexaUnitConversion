@@ -1,11 +1,11 @@
 const events = {
-	LaunchRequest: () => {
+	LaunchRequest: function() {
 		this.emit('SayHello')
 	},
-	HelloWorldIntent: () => {
+	HelloWorldIntent: function() {
 		this.emit('SayHello');
 	},
-	SayHello: () => {
+	SayHello: function() {
 		this.emit(':tell', 'Hello World!')
 	}
 }
