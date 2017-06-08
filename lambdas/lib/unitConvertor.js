@@ -7,7 +7,7 @@ const toBase = (unitObj) => {
 		unitObj.val *= Math.pow(10, unitObj.system[unitObj.unit]);
 	}
 
-	if (unitObj.system.book.coeff === 'fixed') {
+	if (unitObj.system.coeff === 'fixed') {
 		unitObj.val *= unitObj.system[unitObj.unit];
 	}
 
