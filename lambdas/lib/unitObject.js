@@ -9,6 +9,9 @@ const unitLibrary = {
 			centimeter: -2,
 			decimeter: -1,
 			kilometer: 3,
+			conversion: {
+				imperial: 3.28084
+			}
 		},
 		imperial: {
 			base: 'foot',
@@ -16,10 +19,10 @@ const unitLibrary = {
 			foot: 1,
 			inch: 1 / 12,
 			yard: 3,
-			mile: 5280
-		},
-		conversionRate: {
-			metricImperial: 3.28084
+			mile: 5280,
+			conversion: {
+				metric: 1 / 3.28084
+			}
 		}
 	}
 };
@@ -40,8 +43,8 @@ const familyIdentifier = {
 const build = (unit, val) => {
 	const unitObj = {};
 	unitObj.unit = unit;
-	unitObj.val = val ? parseFloat(val): 0;
-	unitObj.val = parseFloat(val);
+	unitObj.val = val ? val: 0;
+	unitObj.val = val;
 	unitObj.meta= familyIdentifier[unit];
 	unitObj.system = unitLibrary[unitObj.meta.family][unitObj.meta.system];
 	return unitObj;
