@@ -45,11 +45,8 @@ const baseToUnit = (unitObj) => {
 // }
 
 const toString = (unitObj) => {
-	unitObj.val = unitObj.val.toString();
-	let i = unitObj.val.indexOf('.');
-	if (i !== -1 && unitObj.val.length - i > 2) {
-		unitObj.val = unitObj.val.slice(0, i + 3);
-	}
+	unitObj.val = Number(Math.round(unitObj.val +'e2')+'e-2').toString();
+	
 	return unitObj;
 }
 
