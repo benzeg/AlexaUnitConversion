@@ -20,7 +20,7 @@ const unitToUnit = (cuObj, tuObj) => {
 		return tuObj;
 	}
 
-	tuObj.val = cuObj.val * cuObj.system.conversion[tuObj.meta.system];
+	tuObj.val = cuObj.system.conversion[tuObj.meta.system](cuObj.val);
 	return tuObj;
 }
 
@@ -40,11 +40,11 @@ const baseToUnit = (unitObj) => {
 	return unitObj;
 }
 
-const toString = (unitObj) => {
-	unitObj.val = Number(Math.round(unitObj.val +'e2')+'e-2').toString();
+const round = (unitObj) => {
+	unitObj.val = Number(Math.round(unitObj.val +'e2')+'e-2');
 	
 	return unitObj;
 }
 
 
-export { toBase, toString, unitToUnit, baseToUnit};
+export { toBase, round, unitToUnit, baseToUnit};

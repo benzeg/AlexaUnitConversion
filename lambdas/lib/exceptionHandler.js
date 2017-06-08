@@ -35,12 +35,19 @@ const verifyUnitFamily = (cuObj, tuObj) => {
 	if (!Unit.familyIdentifier[cuObj.unit] && !checkPlural(cuObj)) {
 		err = 'converting unit not found';
 	} else if (!Unit.familyIdentifier[tuObj.unit] && !checkPlural(tuObj)) {
-		err = 'target unit not found';
+		if (tuObj.unit === 'fluid') {
+			tuObj.unit = 'fluid ounce'
+		} else {
+			err = 'target unit not found';
+		}
 	} else if (cuObj.unit === tuObj.unit) {
 		err = 'you gave me the same units of measurement';
 	} else if (Unit.familyIdentifier[cuObj.unit].family !== Unit.familyIdentifier[tuObj.unit].family) {
-		err = `${convertingUnit} cannot be converted to ${targetUnit}, ${convertingUnit}
-					is used to measure ${Unit.failyIdentifier[convertingUnit].family} while ${targetUnit} is used to measure ${Unit.familyIdentifier[targetUnit].family}`;
+		if (Unit.familyIdentifier[cuObj.unit].family === 'volume' && (tuObj.unit === 'ounce' || tuObj.unit.inclu)) {
+			tuObj.unit = 'fluid ounce';
+		} else {
+			err = `${cuObj.unit} cannot be converted to ${tuObj.unit}, ${cuObj.unit} is used to measure ${Unit.familyIdentifier[cuObj.unit].family} while ${tuObj.unit} is used to measure ${Unit.familyIdentifier[tuObj.unit].family}`;
+		}
 	}
 
 	if (err) {

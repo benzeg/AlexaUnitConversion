@@ -7,12 +7,10 @@ const handler = (event, context, callback) => {
 	const alexa = Alexa.handler(event, context, callback);
 	//Fill in with app id later
 	alexa.appId = Cert.id;
-	console.log('alexa id', alexa.appId);
-	console.log('event', event);
-	console.log('context', context);
+
 	//register event handlers to alexa
 	alexa.registerHandlers(Handlers.events);
-	console.log('past handler register')
+
 	//start alexa
 	alexa.execute();
 }

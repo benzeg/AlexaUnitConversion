@@ -9,7 +9,7 @@ const convertor = (cuInfo, tuInfo) => {
 	ConvertTools.toBase(cuInfo);
 	ConvertTools.unitToUnit(cuInfo, tuInfo);
 	ConvertTools.baseToUnit(tuInfo);
-	ConvertTools.toString(tuInfo);
+	ConvertTools.round(tuInfo);
 	return tuInfo;
 }
 

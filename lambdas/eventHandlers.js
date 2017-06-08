@@ -7,12 +7,9 @@ const events = {
 	LaunchRequest: function() {
 		this.emit('SayHello')
 	},
-	HelloWorldIntent: function() {
-		this.emit('SayHello');
-	},
 	SayHello: function() {
 		console.log('in hello world')
-		this.emit(':tell', 'Hello World!')
+		this.emit(':tell', 'What can I do for you today?')
 	},
 	Inquiry: function() {
 		this.emit('ConvertUnit');
@@ -41,12 +38,14 @@ const events = {
 
 		val = parseFloat(val)
 		Unit.build(cuInfo, val);
+		if (cuInfo.meta.family === 'volume' && (tuInfo.unit === 'ounce' || tuInfo.unit === 'fluid')) {
+			tuInfo.unit = 'fluid ounce';
+		}
 		Unit.build(tuInfo);
-		console.log('cuInfo', cuInfo);
-		console.log('tuInfo', tuInfo);
 
 		const convertedResult = SkillService.convertor(cuInfo, tuInfo);
 		const response = ResponseService.generateSentence(val, convertingUnit, convertedResult);
+
 		return this.emit(':tell', response);
 	}
 }
