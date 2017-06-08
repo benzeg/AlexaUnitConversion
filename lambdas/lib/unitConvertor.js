@@ -3,11 +3,11 @@ const toBase = (unitObj) => {
 		return unitObj;
 	}
 
-	if (unitObj.book.coeff === 'base10') {
+	if (unitObj.system.coeff === 'base10') {
 		unitObj.val *= Math.pow(10, unitObj.system[unitObj.unit]);
 	}
 
-	if (unitObj.book.coeff === 'fixed') {
+	if (unitObj.system.book.coeff === 'fixed') {
 		unitObj.val *= unitObj.system[unitObj.unit];
 	}
 
