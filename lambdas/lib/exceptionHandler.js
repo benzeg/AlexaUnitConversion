@@ -5,20 +5,46 @@ const InputException = function(message) {
 	this.name = 'InputException';
 }
 
-const verifyUnitFamily = (convertingUnit, targetUnit) => {
+const checkPlural = (unitObj) => {
+	if ( unitObj.unit === 'feet') {
+		unitObj.unit = 'foot';
+		return unitObj.unit;
+	}
+
+	if (unitObj.unit[unitObj.unit.length -1] === 's') {
+		unitObj.unit = unitObj.unit.slice(0, unitObj.unit.length - 1);
+		if (Unit.familyIdentifier[unitObj.unit]) {
+			return unitObj.unit;
+		}
+		if (unitObj.unit[unitObj.unit.length -1] === 'e') {
+			unitObj.unit = unitObj.unit.slice(0, unitObj.unit.length -1);
+			if (Unit.familyIdentifier[unitObj.unit]) {
+				return unitObj.unit;
+			}
+		}
+	}
+
+	return false;
+}
+
+const verifyUnitFamily = (cuObj, tuObj) => {
 	//error catching
 	let err;
-	if (!Unit.familyIdentifier[convertingUnit]) {
+
+
+	if (!Unit.familyIdentifier[cuObj.unit] && !checkPlural(cuObj)) {
 		err = 'converting unit not found';
 	}
-	if (!Unit.familyIdentifier[targetUnit]) {
+
+	if (!Unit.familyIdentifier[tuObj.unit] && !checkPlural(tuObj)) {
 		err = 'target unit not found';
 	}
+
 	
-	if (convertingUnit === targetUnit) {
+	if (cuObj.unit === tuObj.unit) {
 		err = 'you gave me the same units of measurement';
 	}
-	if (Unit.familyIdentifier[convertingUnit].family !== Unit.familyIdentifier[targetUnit].family) {
+	if (Unit.familyIdentifier[cuObj.unit].family !== Unit.familyIdentifier[tuObj.unit].family) {
 		err = `${convertingUnit} cannot be converted to ${targetUnit}, ${convertingUnit}
 					is used to measure ${Unit.failyIdentifier[convertingUnit].family} while ${targetUnit} is used to measure ${Unit.failyIdentifier[targetUnit].family}`;
 	}
@@ -35,7 +61,7 @@ const verifyInputNum = (val) => {
 	let err;
 	const num = parseFloat(val);
 	if (isNaN(num)) {
-		err = `you gave me an invalid number of ${convertingUnit} to convert`;
+		err = `you gave me an invalid number to convert`;
 		throw new InputException(err);
 	} else {
 		//return the float parsed number
@@ -43,4 +69,4 @@ const verifyInputNum = (val) => {
 	}
 }
 
-export { verifyUnitFamily, verifyInputNum};
+export { checkPlural, verifyUnitFamily, verifyInputNum};

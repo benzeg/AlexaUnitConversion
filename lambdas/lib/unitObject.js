@@ -40,12 +40,10 @@ const familyIdentifier = {
 	mile: {family: 'length', system: 'imperial'}
 }
 
-const build = (unit, val) => {
-	const unitObj = {};
-	unitObj.unit = unit;
+const build = (unitObj, val) => {
 	unitObj.val = val ? val: 0;
 	unitObj.val = val;
-	unitObj.meta= familyIdentifier[unit];
+	unitObj.meta= familyIdentifier[unitObj.unit];
 	unitObj.system = unitLibrary[unitObj.meta.family][unitObj.meta.system];
 	return unitObj;
 }

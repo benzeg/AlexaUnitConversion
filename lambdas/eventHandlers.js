@@ -1,5 +1,7 @@
 import * as SkillService from './lib/conversionService.js';
 import * as ResponseService from './conversation/response.js';
+import * as Unit from './lib/unitObject.js';
+import * as Validate from './lib/exceptionHandler.js';
 
 const events = {
 	LaunchRequest: function() {
@@ -16,12 +18,36 @@ const events = {
 		this.emit('ConvertUnit');
 	},
 	ConvertUnit: function() {
-		const val = parseFloat(this.event.request.intent.slots.valOne.value);
+		let val = parseFloat(this.event.request.intent.slots.valOne.value);
 		const convertingUnit = this.event.request.intent.slots.unitOne.value;
 		const targetUnit = this.event.request.intent.slots.unitTwo.value;
-		const convertedResult = SkillService.convertor(val, convertingUnit, targetUnit);
+	  const cuInfo = {unit: convertingUnit};
+	  const tuInfo = {unit: targetUnit};
+	  let err;
+
+		try {
+				//Converting Unit and Target Unit will be referred to as cu and tu
+				//from here on out in variable names
+				Validate.verifyUnitFamily(cuInfo, tuInfo);
+				Validate.verifyInputNum(val); 
+		} catch (e) {
+			console.log(e);
+			err = e.message;
+		}
+
+		if (err) {
+			return this.emit(':tell', err);
+		}
+
+		val = parseFloat(val)
+		Unit.build(cuInfo, val);
+		Unit.build(tuInfo);
+		console.log('cuInfo', cuInfo);
+		console.log('tuInfo', tuInfo);
+
+		const convertedResult = SkillService.convertor(cuInfo, tuInfo);
 		const response = ResponseService.generateSentence(val, convertingUnit, convertedResult);
-		this.emit(':tell', response);
+		return this.emit(':tell', response);
 	}
 }
 

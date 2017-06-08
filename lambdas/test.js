@@ -1,3 +1,3 @@
-import * as Service from './lib/conversionService.js';
+import * as Service from './eventHandlers.js';
 
-console.log(Service.convertor('10000', 'centimeter', 'meter'));
+console.log(Service.events.ConvertUnit('bool', 'feet', 'meter'));
