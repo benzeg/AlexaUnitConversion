@@ -40,10 +40,6 @@ const baseToUnit = (unitObj) => {
 	return unitObj;
 }
 
-// const round = (unitObj) => {
-
-// }
-
 const toString = (unitObj) => {
 	unitObj.val = Number(Math.round(unitObj.val +'e2')+'e-2').toString();
 	

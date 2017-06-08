@@ -1,4 +1,5 @@
 import * as SkillService from './lib/conversionService.js';
+import * as ResponseService from './conversation/response.js';
 
 const events = {
 	LaunchRequest: function() {
@@ -18,8 +19,9 @@ const events = {
 		const val = parseFloat(this.event.request.intent.slots.valOne.value);
 		const convertingUnit = this.event.request.intent.slots.unitOne.value;
 		const targetUnit = this.event.request.intent.slots.unitTwo.value;
-		//const convertedResult = SkillService.convertor(val, convertingUnit, targetUnit)
-		this.emit(':tell', val);
+		const convertedResult = SkillService.convertor(val, convertingUnit, targetUnit);
+		const response = ResponseService.generateSentence(val, convertingUnit, convertedResult);
+		this.emit(':tell', response);
 	}
 }
 
