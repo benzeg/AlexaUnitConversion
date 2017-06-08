@@ -34,19 +34,13 @@ const verifyUnitFamily = (cuObj, tuObj) => {
 
 	if (!Unit.familyIdentifier[cuObj.unit] && !checkPlural(cuObj)) {
 		err = 'converting unit not found';
-	}
-
-	if (!Unit.familyIdentifier[tuObj.unit] && !checkPlural(tuObj)) {
+	} else if (!Unit.familyIdentifier[tuObj.unit] && !checkPlural(tuObj)) {
 		err = 'target unit not found';
-	}
-
-	
-	if (cuObj.unit === tuObj.unit) {
+	} else if (cuObj.unit === tuObj.unit) {
 		err = 'you gave me the same units of measurement';
-	}
-	if (Unit.familyIdentifier[cuObj.unit].family !== Unit.familyIdentifier[tuObj.unit].family) {
+	} else if (Unit.familyIdentifier[cuObj.unit].family !== Unit.familyIdentifier[tuObj.unit].family) {
 		err = `${convertingUnit} cannot be converted to ${targetUnit}, ${convertingUnit}
-					is used to measure ${Unit.failyIdentifier[convertingUnit].family} while ${targetUnit} is used to measure ${Unit.failyIdentifier[targetUnit].family}`;
+					is used to measure ${Unit.failyIdentifier[convertingUnit].family} while ${targetUnit} is used to measure ${Unit.familyIdentifier[targetUnit].family}`;
 	}
 
 	if (err) {
