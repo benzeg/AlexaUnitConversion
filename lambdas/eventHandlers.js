@@ -1,3 +1,5 @@
+import * as SkillService from './lib/conversionService.js';
+
 const events = {
 	LaunchRequest: function() {
 		this.emit('SayHello')
@@ -13,10 +15,11 @@ const events = {
 		this.emit('ConvertUnit');
 	},
 	ConvertUnit: function() {
-		const val = parseInt(this.event.request.intent.slots.valOne.value);
+		const val = parseFloat(this.event.request.intent.slots.valOne.value);
 		const convertingUnit = this.event.request.intent.slots.unitOne.value;
-		const convertionUnit = this.event.request.intent.slots.unitTwo.value;
-		this.emit(':tell', convertionUnit);
+		const targetUnit = this.event.request.intent.slots.unitTwo.value;
+		//const convertedResult = SkillService.convertor(val, convertingUnit, targetUnit)
+		this.emit(':tell', val);
 	}
 }
 
