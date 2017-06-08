@@ -12,6 +12,7 @@ const convertor = (val, convertingUnit, targetUnit) => {
 		console.log(e);
 		return e.message;
 	}
+
 	val = parseFloat(val);
 	const cuInfo = Unit.build(convertingUnit, val);
 	const tuInfo = Unit.build(targetUnit);
@@ -19,8 +20,8 @@ const convertor = (val, convertingUnit, targetUnit) => {
 	//call on convert to base unit tool to make conversion if necessary
 	//since we'll be using the base unit number to convert between unit systems
 	ConvertTools.toBase(cuInfo);
-	ConvertTools.baseToUnit(tuInfo, val);
 	ConvertTools.unitToUnit(cuInfo, tuInfo);
+	ConvertTools.baseToUnit(tuInfo);
 	ConvertTools.toString(tuInfo);
 	return tuInfo;
 }
