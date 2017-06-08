@@ -14,4 +14,18 @@ const toBase = (unitObj) => {
 	return unitObj;
 }
 
-export { toBase };
+// const round = (unitObj) => {
+
+// }
+
+const toString = (unitObj) => {
+	unitObj.val = unitObj.val.toString();
+	let i = unitObj.val.indexOf('.');
+	if (i !== -1 && unitObj.val.length - i > 2) {
+		unitObj.val = unitObj.val.slice(0, i + 3);
+	}
+	return unitObj;
+}
+
+
+export { toBase, toString };
