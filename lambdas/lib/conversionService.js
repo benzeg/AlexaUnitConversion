@@ -6,13 +6,8 @@ const convertor = (val, convertingUnit, targetUnit) => {
 	try {
 		//Converting Unit and Target Unit will be referred to as cu and tu
 		//from here on out in variable names
-		const unitInfo = Validate.verifyUnitFamily(convertingUnit, targetUnit);
-		const inputNum = Validate.verifyInputNum(val);
-		const cuInfo = Object.assign({}, unitInfo.cu);
-			cuInfo.val = inputNum;
-			cuInfo.unit = convertingUnit;
-		const tuInfo = Object.assign({}, unitInfo.tu);
-			tuInfo.unit = targetUnit;
+		Validate.verifyUnitFamily(convertingUnit, targetUnit);
+		Validate.verifyInputNum(val);
 	} catch (e) {
 		console.log(e);
 		return e.message;

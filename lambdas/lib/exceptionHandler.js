@@ -27,10 +27,7 @@ const verifyUnitFamily = (convertingUnit, targetUnit) => {
 		throw new InputException(err);
 	} else {
 		//return unit family if no error
-		return {
-			cu: Unit.familyIdentifier[convertingUnit],
-			tu: Unit.familyIdentifier[targetUnit]
-		};
+		return true;
 	}
 }
 
@@ -42,7 +39,7 @@ const verifyInputNum = (val) => {
 		throw new InputException(err);
 	} else {
 		//return the float parsed number
-		return num;
+		return true;
 	}
 }
 
