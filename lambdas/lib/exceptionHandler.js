@@ -33,10 +33,18 @@ const verifyUnitFamily = (cuObj, tuObj) => {
 
 
 	if (!Unit.familyIdentifier[cuObj.unit] && !checkPlural(cuObj)) {
-		err = 'converting unit not found';
+		if (cuObj.unit === 'fluid') {
+			cuObj.unit = 'fluid ounce';
+		} else if (cuObj.unit === 'cm') {
+			cuObj.unit = 'centimeter';
+		} else {
+				err = 'converting unit not found';
+			}
 	} else if (!Unit.familyIdentifier[tuObj.unit] && !checkPlural(tuObj)) {
 		if (tuObj.unit === 'fluid') {
-			tuObj.unit = 'fluid ounce'
+			tuObj.unit = 'fluid ounce';
+		} else if (tuObj.unit === 'cm') {
+			tuObj.unit = 'centimeter';
 		} else {
 			err = 'target unit not found';
 		}

@@ -8,8 +8,7 @@ const events = {
 		this.emit('SayHello')
 	},
 	SayHello: function() {
-		console.log('in hello world')
-		this.emit(':tell', 'What can I do for you today?')
+		this.emit(':ask', "Hello, I can help you answer questions such as how many drams is in a pound, ask me a question");
 	},
 	Inquiry: function() {
 		this.emit('ConvertUnit');
