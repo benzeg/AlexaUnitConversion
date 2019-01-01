@@ -13,8 +13,8 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Unit Conversion Alexa skill
-description: A unit conversion tool developed for Amazon Alexa.
+title: Unit Conversion
+description: An Alexa skill.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://benzeg.github.io/alexaunitconversion" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: Benze_Gong
