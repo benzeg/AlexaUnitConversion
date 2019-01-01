@@ -22,6 +22,7 @@ github_username:  benzeg
 
 # Build settings
 markdown: kramdown
+theme: minima
 theme: jekyll-theme-midnight
 plugins:
   - jekyll-feed
