@@ -8,7 +8,7 @@ layout: home
 
 This program will let you use an Alexa enabled device to convert between common measurement units. Supported units:
 
-|Length|Volume|Time|Mass|Temperature|Angle|
+|LENGTH|VOLUME|TIME|MASS|TEMPERATURE|ANGLE|
 |-----------------------------------------|
 |micrometer|milliliter|second|milligram|kelvin|radian|
 |millimeter|centiliter|minute|gram|celsius|degree|
