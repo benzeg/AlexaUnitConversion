@@ -6,7 +6,7 @@ layout: home
 ---
 ## What it does
 
-This program will let you use an Alexa enabled device to convert between common measurement units. Supported units:
+This program will let you use an amazon alexa enabled device to convert between common measurement units. Supported units:
 
 |LENGTH|VOLUME|TIME|MASS|TEMPERATURE|ANGLE|
 |-----------------------------------------|
